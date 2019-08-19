@@ -97,7 +97,7 @@ class Main extends PluginBase implements Listener{
     }
 
     public function levelUp($player){
-        $this->stats->setNested(strtolower($player->getName()).".lvl", $this->stats->getAll()[strtolower($player->getName())]["lvl"] + 1);
+        $this->stats->setNested(strtolower($player->getName()).".->", $this->stats->getAll()[strtolower($player->getName())]["->"] + 1);
         $this->stats->save();
         $this->setNamedTag($player);
         $this->getServer()->broadcastMessage(C::ITALIC. $player->getName(). " is now level ". $this->getLevel($player). "!");
@@ -137,7 +137,7 @@ class Main extends PluginBase implements Listener{
     }
 
     public function addExp($player, $exp){
-        $this->stats->setNested(strtolower($player).".exp", $this->stats->getAll()[strtolower($player)]["exp"] + $exp);
+        $this->stats->setNested(strtolower($player).".exp", $this->stats->getAll()[strtolower($player)]["->"] + $exp);
         $this->stats->save();
     }
 
@@ -190,11 +190,11 @@ class Main extends PluginBase implements Listener{
 
     public function addExpBreak(BlockBreakEvent $e){
         $pn = $e->getPlayer()->getName();
-        $this->addExp($pn, 5);
+        $this->addExp($pn, 0.5);
     }
 
     public function addExpPlace(BlockPlaceEvent $e){
         $pn = $e->getPlayer()->getName();
-        $this->addExp($pn, 5);
+        $this->addExp($pn, 1);
     }
 }
